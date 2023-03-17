@@ -1,0 +1,117 @@
+>> Cadastros
+>>>> Doador
+ - Doador 
+    - id sequencial
+    - nome
+    - codigo
+    - local
+        - interno
+            - Pavilão e Loja
+        - externo
+            - Endereço completo
+        - MLP
+            - Produtor
+                - Preencher em qual setor ele vai estar no dia antes de cadastrar Coleta ( select )
+
+ - Doador Anonimo
+    - vai ser por telefone, não usar o cadastro do app **
+
+** Observação
+    - 
+
+>>>> Coleta
+    - Nome do aliemnto
+    - Quantidade
+    - tempo para coleta ( select - talvez tempo minimo de 1h ) 
+    - status
+
+** Observação
+    - Pode ficar para o proximo dia
+
+>>>> Instituição  
+ - Fixo
+    - nome
+    - codigo
+    - municipio
+    - Dia da semana dela
+    - Contato
+
+ - Eventuais (excedente)
+    - nome
+    - codigo
+    - municipio
+    - Contato
+
+** Observação
+    - Tem algum tipo de prioridade entre elas
+        - Vai ter uma flag de nivel ( 1 nivel , 2 nivel e 3 nivel )
+    - Se vai ter cadastro para visualizar coleta do dia    
+    - Pode ocorrer da instituição Eventual não ir buscar
+    - Dia e turno para aviso de coleta
+        - são cadastrados ( segunda e manha / terça e tarde )
+
+Caso:
+    tenho disponvivel 200 sacos de batatas, aparece como notificação para as Eventuais
+        A prodal pode limitar a quantidade por instituição ( deixar para ADM trocar o valor ) **
+
+>>>> Motorista (ambos)
+ - Visualizar todas as coletas do dia
+    - visualizar todas coletas em aberta **
+ - Visualizar detalhe da coleta
+ - Confirmar em andamento para a coleta
+    - deve feito na tela de visualizar detalhe da coleta
+ - Confirmar retirada da doação
+
+** Observação
+    - Vai poder cancelar, como fica a entregas que não foram feitas no dia?
+        - vai ser feita pelo ADM
+
+>>>> ADM
+ - Definir prioridade da coleta
+ - Informa Instituições da falta de alimentos para o dia
+ - Cadastrar outros usuários
+ - Cadastrar os alimentos
+    - 1 caixa 6424 (unidade de medida)
+        - unidade / item / peso (1 caixa de batata 6424)
+ - Pode fazer lançamento de um Coleta
+    - Pode colocar quem foi o Doador
+    - Caso seja anonimo é preciso identificar **
+ - Confirmar cancelamento
+ - Não pode excluir doações
+
+>>>> Gestor (Ricardo)
+ - Apenas o Ricardo (gestor) pode excluir
+
+** Observação
+    - O aviso da falta de alimentos é feito para todas as instituições
+        - Caso tenha 40 instituições para o dia
+            e tenha apenas para 10, vai ser cancelado tudo ou vai ter prioridade para  
+        * possível solução seria definir prioridade para instituições
+    - poder adicioanr tempo minimo na aplicação
+
+## Funcional ##
+{
+    [ RF-001 ] [ ALTA ] - Deve ser possível informa se haverá coleta para o dia
+    [ RF-002 ] [ ALTA ] - Deve ser possível cadastrar uma coleta
+    [ RF-003 ] [ ALTA ] - Deve ser possível cadastrar uma coleta de forma anonima
+    [ RF-004 ] [ ALTA ] - Deve ser possível cadastrar Instituições
+    [ RF-005 ] [ ALTA ] - Deve ser possível cadastrar Doadores
+    [ RF-006 ] [ MEDIA ] - Deve ser exibida as coletas do dia em ordem de prioridade
+    [ RF-007 ] [ MEDIA ] - O Motorista deve poder visualizar todas as coletas do dia
+    [ RF-008 ] [ MEDIA ] - O Motorista deve poder visualizar detalhes de uma coleta selecionada
+    [ RF-009 ] [ BAIXA ] - O Motorista deve poder confirmar a retirada da doação
+    [ RF-010 ] [ BAIXA ] - O Motorista deve poder confirmar deslocamento para a coleta
+
+    ## Não Funcionais ##
+    [ RNF-001 ] [ ALTA ] - A aplicação deve ser responsiva
+    [ RNF-002 ] [ BAIXA ] - Deve seguir as cores padrão da comunidade
+}
+
+## Perfis ##
+{
+    ADM
+    Motorista
+    Doador
+    Instituição
+    Gestor
+}
