@@ -74,12 +74,13 @@ class AuthController extends Controller
             return response()->json(['error' => 'Usuário e/ou senha inválidos'], 401);
         }
 
-        if(auth()->user()->ativo == 1){
-            return $this->respondWithToken($token);
+        return $this->respondWithToken($token);
+        // if(auth()->user()->ativo == 1){
+        //     return $this->respondWithToken($token);
 
-        }else{
-            return response()->json(['error' => 'Usuário Desabilitado'], 401);
-        }
+        // }else{
+        //     return response()->json(['error' => 'Usuário Desabilitado'], 401);
+        // }
     }
 
     /**

@@ -49,5 +49,9 @@ Route::group([
         //Routes User
         Route::post('me', '\App\Http\Controllers\AuthController@me');
         Route::resource('user', '\App\Http\Controllers\UserController');
+
+        //Routes Institution
+        Route::resource('instituicao', '\App\Http\Controllers\InstituicaoController');
+
     });
 });
