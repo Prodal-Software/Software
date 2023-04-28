@@ -8,6 +8,8 @@ import DonationForm from './components/donation_page';
 function App() {
   return (
     <div className="App">
+      {/* <LoginForm></LoginForm> */}
+      {/* <RegisterForm></RegisterForm> */}
       <DonationForm></DonationForm>
     </div>
   );
