@@ -1,16 +1,16 @@
-import logo from './logo.svg';
-import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import LoginForm from './components/login_page';
-import RegisterForm from './components/register_page';
-import DonationForm from './components/donation_page';
+import Cadastro from './pages/Cadastro';
+import DoarAlimento from './pages/DoarAlimento';
+import Login from './pages/Login';
+import Motorista from './pages/Motorista';
 
 function App() {
   return (
     <div className="App">
-      {/* <LoginForm></LoginForm> */}
-      {/* <RegisterForm></RegisterForm> */}
-      <DonationForm></DonationForm>
+      {/* <Login></Login>    */}
+      {/* <Cadastro></Cadastro> */}
+      {/* <DoarAlimento></DoarAlimento> */}
+      <Motorista/>
     </div>
   );
 }
