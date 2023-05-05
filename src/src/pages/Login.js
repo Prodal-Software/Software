@@ -17,7 +17,7 @@ export const Login = () => {
       // vai ser enviado um POST depois
       let credenciais = {
         email,
-        senha
+        password: senha
       };
       
       console.log(credenciais);
