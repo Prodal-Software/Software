@@ -1,32 +1,28 @@
-import { Box, Card, CardContent, Typography, IconButton, Stack } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { Box, Typography, Stack } from '@mui/material';
+import MotoristaCard from '../components/MotoristaCard';
 
 export const Motorista = () => {
-    
     return (
-        <Box width={'100%'} marginTop={'5%'} display={'flex'} justifyContent={'center'}>
-            <Stack>
-                <Typography marginBottom={'30px'} variant='h3'>Motorista</Typography>
-                <Card>
-                    <CardContent>
-                        <Typography variant='h5'>Doador 1</Typography>
-                        <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-                            <Box width={'30em'} display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
-                                <Box>
-                                    <Typography>Alimento</Typography>
-                                    <Typography>Cenoura</Typography>
-                                </Box>
-                                <Box>
-                                    <Typography>Quantidade</Typography>
-                                    <Typography>2 Caixas</Typography>
-                                </Box>
-                            </Box>
-                            <IconButton size='large'>
-                                <SearchIcon></SearchIcon>
-                            </IconButton>
-                        </Box>
-                    </CardContent>
-                </Card>
+        <Box 
+        width={'100%'} 
+        height={'100%'} 
+        marginTop={'5%'} 
+        display={'flex'} 
+        justifyContent={'center'}>
+            <Stack 
+            justifyContent={'space-between'} 
+            spacing={5}>
+                <Typography 
+                color={'white'} 
+                marginBottom={'30px'} 
+                variant='h3'>
+                    Motorista
+                </Typography>
+                <MotoristaCard 
+                doador={'Guilherme Simao'} 
+                endereco={'Rua Alfa, 275, Contagem, Minas Gerais'}
+                alimento={'Banana'} 
+                quantidade={'3 Caixas'} />
             </Stack>
         </Box>
     )

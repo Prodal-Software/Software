@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, FormHelperText } from '@mui/material';
+import { TextField } from '@mui/material';
 
 function Formulario(props) {
   const { label, type, value, onChange, color, size, helperText} = props;
