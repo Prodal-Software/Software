@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack, FormControlLabel, Checkbox } from '@mui/material';
-import Formulario from '../components/Formulario';
+import Input from '../components/Input';
 import { useState } from 'react'
 
 export const Cadastro = () => {
@@ -19,13 +19,13 @@ export const Cadastro = () => {
         <Box alignContent={'center'} marginTop={'15%'}>
             <Typography variant='h2'>Cadastro</Typography>
 
-            <Formulario label='Nome' type='name' value={nome} color='warning' onChange={handleNomeChange}/>
+            <Input label='Nome' type='name' value={nome} color='warning' onChange={handleNomeChange}/>
             <br/>
-            <Formulario label='Email' type='email' value={email} color='warning' onChange={handleEmailChange}/>
+            <Input label='Email' type='email' value={email} color='warning' onChange={handleEmailChange}/>
             <br/>
-            <Formulario label='Contato' type='tel' value={contato} color='warning' onChange={handleContatoChange}/>
+            <Input label='Contato' type='tel' value={contato} color='warning' onChange={handleContatoChange}/>
             <br/>
-            <Formulario label='Senha' type={checkedpassword?'text' : 'password'} value={senha} color='warning' onChange={handleSenhaChange}/>
+            <Input label='Senha' type={checkedpassword?'text' : 'password'} value={senha} color='warning' onChange={handleSenhaChange}/>
             <br/>
             <FormControlLabel label='Mostrar Senha' control={<Checkbox color='warning' checked={checkedpassword} onChange={handleCheckboxChange}></Checkbox>}></FormControlLabel>
 

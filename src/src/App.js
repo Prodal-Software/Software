@@ -7,10 +7,10 @@ import Motorista from './pages/Motorista';
 function App() {
   return (
     <div className="App">
-      {/* <Login></Login>    */}
-      {/* <Cadastro></Cadastro> */}
-      {/* <DoarAlimento></DoarAlimento> */}
-      <Motorista/>
+      <Login></Login>   
+      {/* <Cadastro></Cadastro>
+      <DoarAlimento></DoarAlimento>
+      <Motorista/> */}
     </div>
   );
 }

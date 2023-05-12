@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField } from '@mui/material';
 
-function Formulario(props) {
+function Input(props) {
   const { label, type, value, onChange, color, size, helperText} = props;
 
   return (
@@ -19,4 +19,4 @@ function Formulario(props) {
   );
 }
 
-export default Formulario;
+export default Input;
