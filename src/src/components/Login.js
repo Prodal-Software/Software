@@ -1,7 +1,5 @@
-import { Box, Typography, Button, Stack } from '@mui/material';
-import Input from './Input';
-import { useState } from 'react'
-import { Card } from '@mui/joy';
+import { Box, Typography, Button, Stack, TextField } from '@mui/material';
+import { useState } from 'react';
 
 export const Login = () => {
     const [email,setEmail] = useState('');
@@ -25,18 +23,33 @@ export const Login = () => {
     }
 
     return (
-      <Box display={'flex'} flexDirection={'column'} paddingTop={'200px'}>
-          <Typography variant='h2'>Login</Typography>
+      <Box display={'flex'} flexDirection={'column'} paddingTop={'100px'}>
+          <Typography variant='h1' paddingBottom={'50px'}>Login</Typography>
           <form onSubmit={handleSubmit}>
-            <Input label='Email' type='email' value={email} color='warning' onChange={handleEmailChange}/>
-            <br/>
-            <Input label='Senha' type='password' value={senha} color='warning' onChange={handleSenhaChange}/>
-
-            <Stack spacing={5} direction={'row'} justifyContent={'center'} marginTop={'2em'}>
-              <Button variant='outlined'>Criar Conta</Button>
-              <Button variant='contained' color='warning' type='submit'>Entrar</Button>
-            </Stack>
+            <TextField 
+            label='Email' 
+            type='email' 
+            value={email}
+            color='warning'
+            onChange={handleEmailChange}
+            />
+            <br/><br/>
+            <TextField
+            label='Senha' 
+            type='password' 
+            value={senha}
+            color='warning'
+            onChange={handleSenhaChange}
+            />
           </form>
+          <Stack 
+          spacing={5} 
+          direction={'row'} 
+          justifyContent={'center'} 
+          marginTop={'2em'}>
+            <Button variant='outlined'>Criar Conta</Button>
+            <Button variant='contained' color='warning' type='submit'>Entrar</Button>
+          </Stack>
       </Box>
     )
 }
