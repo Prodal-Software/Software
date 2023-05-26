@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import Cadastro from './pages/Cadastro';
 import DoarAlimento from './pages/DoarAlimento';
-import Login from './pages/Login';
+import Login from './components/Login';
 import Motorista from './pages/Motorista';
 
 function App() {

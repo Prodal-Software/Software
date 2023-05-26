@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack } from '@mui/material';
-import Input from '../components/Input';
+import Input from './Input';
 import { useState } from 'react'
 import { Card } from '@mui/joy';
 
