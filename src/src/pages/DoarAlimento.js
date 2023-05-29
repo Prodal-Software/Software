@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack, FormHelperText, MenuItem, TextField } from '@mui/material';
-import Formulario from '../components/Input';
+import Formulario from '../components/Templates/Input';
 import { useState } from 'react'
 
 export const DoarAlimento = () => {

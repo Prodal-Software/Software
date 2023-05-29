@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack, FormControlLabel, Checkbox } from '@mui/material';
-import Input from '../components/Input';
+import Input from '../components/Templates/Input';
 import { useState } from 'react'
 
 export const Cadastro = () => {
