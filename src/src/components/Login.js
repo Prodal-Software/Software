@@ -1,6 +1,5 @@
 import { Box, Typography, Button, Stack, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
-import { useState } from 'react'
-import { NavLink } from "react-router-dom";
+import { useState } from 'react';
 import { VisibilityOff,Visibility } from '@mui/icons-material'
 
 export const Login = () => {
@@ -40,9 +39,11 @@ export const Login = () => {
               <FormControl sx={{ m: 1, width: '35ch', color:'warning', alignSelf:'flex-start'}} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password" color='warning'>Senha</InputLabel>
                 <OutlinedInput
+                  value={senha}
                   color='warning'
                   id="outlined-adornment-password"
                   type={mostrarSenha ? 'text' : 'password'}
+                  onChange={handleSenhaChange}
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton

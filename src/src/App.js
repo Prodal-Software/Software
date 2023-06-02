@@ -1,10 +1,11 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar';
-import Cadastro from './pages/Cadastro';
+import Cadastro from './components/Cadastro';
 import DoarAlimento from './pages/DoarAlimento';
 import Login from './components/Login';
 import Motorista from './pages/Motorista';
+import Administração from './pages/Adm';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/cadastro' element={<Cadastro/>}/>
           <Route path='/motorista' element={<Motorista/>}/>
           <Route path='/doacao' element={<DoarAlimento/>}/>
+          <Route path='/admin' element={<Administração/>}/>
         </Routes>
     </div>
   );

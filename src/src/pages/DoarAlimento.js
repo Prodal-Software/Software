@@ -1,5 +1,5 @@
 import { Box, Typography, Button, Stack, FormHelperText, MenuItem, TextField } from '@mui/material';
-import Formulario from '../components/Templates/Input';
+
 import { useState } from 'react'
 
 export const DoarAlimento = () => {
@@ -12,7 +12,7 @@ export const DoarAlimento = () => {
     const handleAlimentoChange = (Event) => {setAlimento(Event.target.value)}
     const handleQuantidadeChange = (Event) => {setQuantidade(Event.target.value)}
     const handleTempoColetaChange = (Event) => {setTempoColeta(Event.target.value)}
-    const handleLimparCampos = (Event) => {
+    const handleLimparCampos = () => {
         setEndereco('');
         setAlimento('');
         setQuantidade('');
@@ -20,10 +20,23 @@ export const DoarAlimento = () => {
     }
 
     return (
-        <Box display={'flex'} alignItems={'center'} flexDirection={'column'} marginTop={'15%'}>
-            <Typography variant='h2'>Doar Alimento</Typography>
+        <Box 
+        display={'flex'} 
+        alignItems={'center'} 
+        flexDirection={'column'} 
+        marginTop={'40px'}
+        >
+            <Typography 
+            variant='h2'
+            >Doar Alimento</Typography>
 
-            <Formulario label='Endereço' type='address' value={endereco} color='warning' onChange={handleEnderecoChange} helperText={<FormHelperText>Por favor insira seguindo a ordem: Rua, Numero, Bairro, Cidade</FormHelperText>}/>
+            <TextField 
+            label='Endereço' 
+            type='address' 
+            value={endereco} 
+            color='warning' 
+            onChange={handleEnderecoChange} 
+            helperText={<FormHelperText>Por favor insira seguindo a ordem: Rua, Numero, Bairro, Cidade</FormHelperText>}/>
             
             <Box width={'400px'} marginTop={'2%'} marginX={'15%'} display={'flex'}>
                 <TextField fullWidth label='Selecione o alimento' value={alimento} onChange={handleAlimentoChange} select>
