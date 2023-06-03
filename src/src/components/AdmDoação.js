@@ -134,8 +134,8 @@ export const AdmDoação = () => {
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Dados faltando",
-        text: "Por favor, preencha todos os campos.",
+        title: "Ocorreu um erro",
+        text: "Por favor, tente novamente mais tarde",
         confirmButtonText: "OK",
       });
     }

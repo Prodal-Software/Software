@@ -1,8 +1,6 @@
 import { 
     Box, 
-    Typography, 
-    Button, 
-    Stack,
+    Typography,
     Tabs,
     Tab,
 } from '@mui/material';
@@ -10,6 +8,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import CadastroInstituição from '../components/CadastroInstituição';
 import AdmDoação from '../components/AdmDoação';
+import GerenciamentoRetiradas from '../components/GerenciamentoRetiradas';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -72,7 +71,7 @@ export const Administração = () => {
             </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-            Item One
+            <GerenciamentoRetiradas/>
         </TabPanel>
         <TabPanel value={value} index={1}>
             Item Two
