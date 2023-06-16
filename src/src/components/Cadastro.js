@@ -7,6 +7,7 @@ import {
   FormControlLabel,
   Checkbox,
   TextField,
+  InputAdornment,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -121,11 +122,15 @@ export const Cadastro = () => {
           type="tel"
           value={contato}
           color="warning"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">+55</InputAdornment>
+            ),
+          }}
           onChange={handleContatoChange}
           helperText={
             <FormHelperText>
-              Por favor, insira seu número de contato seguindo o exemplo: 31
-              987654321
+              Por favor, digite o DDD e seu numero em seguida
             </FormHelperText>
           }
         />

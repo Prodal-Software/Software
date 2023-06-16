@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Transition } from 'react-transition-group';
 import { useState } from 'react';
 
-function MotoristaCard({doador, endereco, alimento, quantidade}) {
+function MotoristaDoaçãoCard({doador, endereco, alimento, quantidade}) {
     const [open, setOpen] = useState('');
     return (
     <>
@@ -233,4 +233,4 @@ function MotoristaCard({doador, endereco, alimento, quantidade}) {
     </>
     )
 }
-export default MotoristaCard;
+export default MotoristaDoaçãoCard;

@@ -14,7 +14,7 @@ import {
 import Swal from "sweetalert2";
 import { Fragment, useState } from "react";
 
-export const AdmDoação = () => {
+export const Doação = () => {
   const [doador, setDoador] = useState("");
   const [local, setLocal] = useState("");
   const [box, setBox] = useState("");
@@ -62,7 +62,7 @@ export const AdmDoação = () => {
   };
   const handleClearTextFields = () => {
     setDoador("");
-    setLocal("Externo");
+    setLocal("");
     setRua("");
     setNumero("");
     setBairro("");
@@ -334,4 +334,4 @@ export const AdmDoação = () => {
     </Box>
   );
 };
-export default AdmDoação;
+export default Doação;

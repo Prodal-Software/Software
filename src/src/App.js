@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Cadastro from './components/Cadastro';
 import DoarAlimento from './pages/DoarAlimento';
 import Login from './components/Login';
-import Motorista from './pages/Motorista';
+import Motorista from './components/Motorista';
 import Administração from './pages/Adm';
 
 function App() {

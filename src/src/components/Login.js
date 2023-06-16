@@ -57,7 +57,7 @@ export const Login = () => {
       flexDirection={"column"}
       alignItems={"center"}
     >
-      <Typography sx={{ mb: "30px" }} variant="h3">
+      <Typography sx={{ mb: "30px" }} variant="h2">
         Login
       </Typography>
       <Box sx={{ width: "400px" }}>

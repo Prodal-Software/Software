@@ -10,7 +10,7 @@ import {
 import Swal from "sweetalert2";
 import { useState } from "react";
 
-export const CadastroInstituição = () => {
+export const AdmCadastroInstituição = () => {
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
   const [municipio, setMunicipio] = useState("");
@@ -71,12 +71,13 @@ export const CadastroInstituição = () => {
         title: "Dados faltando",
         text: "Por favor, preencha todos os campos.",
         confirmButtonText: "OK",
+        confirmButtonColor:"red"
       });
     }
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"} mt={"5px"}>
+    <Box display={"flex"} flexDirection={"column"}>
       <Stack spacing={1}>
         <Typography variant="h4" color={"darkorange"}>
           Cadastrar Instituição
@@ -173,4 +174,4 @@ export const CadastroInstituição = () => {
     </Box>
   );
 };
-export default CadastroInstituição;
+export default AdmCadastroInstituição;
