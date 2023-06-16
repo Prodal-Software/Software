@@ -14,8 +14,10 @@ export const Navbar = () => {
     }
     return(
         <AppBar position="static" color="success">
-            <Toolbar>
-                <NavLink style={navLinkStyle} to={'/login'}>Login</NavLink>
+            <Toolbar sx={{
+                justifyContent:"center",
+            }}>
+                <NavLink style={navLinkStyle} to={'/'}>Login</NavLink>
                 <NavLink style={navLinkStyle} to={'/cadastro'}>Cadastro</NavLink>
                 <NavLink style={navLinkStyle} to={'/motorista'}>Motorista</NavLink>
                 <NavLink style={navLinkStyle} to={'/doacao'}>Doar alimento</NavLink>
