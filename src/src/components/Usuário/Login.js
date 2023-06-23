@@ -15,10 +15,12 @@ import { useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 export const Login = () => {
+  // Setters
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
+  // Handlers
   const handleClickShowPassword = () => {
     setMostrarSenha((show) => !show);
   };
@@ -29,7 +31,7 @@ export const Login = () => {
     setSenha(Event.target.value);
   };
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     if (email.length === 0 || senha.length === 0) {
       Swal.fire({
@@ -52,61 +54,67 @@ export const Login = () => {
 
   return (
     <Box
-      sx={{ pt: "10%" }}
+      sx={{ width: "100%", height: "100%" }}
+      m={"20vh 0vh"}
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
+      justifyContent={'center'}
     >
-      <Typography sx={{ mb: "30px" }} variant="h2">
+      <Typography sx={{ fontSize: "5vh", mb: "1vh", color: "orange" }}>
         Login
       </Typography>
-      <Box sx={{ width: "400px" }}>
-        <form onSubmit={handleSubmit}>
-          <Stack direction={"column"}>
-            <TextField
-              sx={{ m: 1, width: "auto" }}
-              label="Email"
-              type="email"
-              color="warning"
-              value={email}
-              onChange={handleEmailChange}
-            />
+      <Box>
+        <Stack direction={"column"}>
+          <TextField
+            sx={{ m: "1vh 0vh", width: "35vh" }}
+            label="Email"
+            type="email"
+            color="warning"
+            value={email}
+            onChange={handleEmailChange}
+          />
 
-            <FormControl
-              sx={{
-                m: 1,
-                width: "385px",
-                color: "warning",
-                alignSelf: "flex-start",
-              }}
-              variant="outlined"
-            >
-              <InputLabel htmlFor="outlined-adornment-password" color="warning">
-                Senha
-              </InputLabel>
-              <OutlinedInput
-                value={senha}
-                color="warning"
-                id="outlined-adornment-password"
-                type={mostrarSenha ? "text" : "password"}
-                onChange={handleSenhaChange}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {mostrarSenha ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Senha"
-              />
-            </FormControl>
-          </Stack>
-        </form>
+          <FormControl
+            sx={{
+              m: "1vh 0vh",
+              color: "warning",
+              width: "35vh",
+            }}
+            variant="outlined"
+          >
+            <InputLabel htmlFor="senhaInput" color="warning">
+              Senha
+            </InputLabel>
+            <OutlinedInput
+              value={senha}
+              color="warning"
+              id="senhaInput"
+              type={mostrarSenha ? "text" : "password"}
+              onChange={handleSenhaChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Senha"
+            />
+          </FormControl>
+        </Stack>
       </Box>
+      <Button color="warning" href="/recuperar-senha">
+        <Typography
+          sx={{ textDecoration: "underline", textUnderlineOffset: "3px" }}
+        >
+          Esqueci minha senha
+        </Typography>
+      </Button>
       <Stack
         spacing={5}
         direction={"row"}

@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Cadastro from './components/Usuário/Cadastro';
 import Login from './components/Usuário/Login';
 import DoarAlimento from './components/Usuário/Doação';
+import EsqueciMinhaSenha from './components/Usuário/EsqueciMinhaSenha';
 
 // Motorista
 import Motorista from './components/Motorista/Motorista';
@@ -20,7 +21,8 @@ function App() {
     <div className="App">
       <Navbar/>
         <Routes>
-          <Route path='/' element={<Login/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/recuperar-senha' element={<EsqueciMinhaSenha/>}/>
           <Route path='/cadastro' element={<Cadastro/>}/>
           <Route path='/motorista' element={<Motorista/>}/>
           <Route path='/doacao' element={<DoarAlimento/>}/>
