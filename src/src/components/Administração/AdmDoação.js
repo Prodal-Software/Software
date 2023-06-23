@@ -18,6 +18,7 @@ export const Doação = () => {
   const [doador, setDoador] = useState("");
   const [local, setLocal] = useState("");
   const [box, setBox] = useState("");
+  const [endereco, setEndereco] = useState("");
   const [rua, setRua] = useState("");
   const [numero, setNumero] = useState("");
   const [bairro, setBairro] = useState("");
@@ -35,6 +36,9 @@ export const Doação = () => {
   };
   const handleChangeBox = (Event) => {
     setBox(Event.target.value);
+  };
+  const handleChangeEndereco = (Event) => {
+    setEndereco(Event.target.value);
   };
   const handleChangeRua = (Event) => {
     setRua(Event.target.value);
@@ -63,6 +67,7 @@ export const Doação = () => {
   const handleClearTextFields = () => {
     setDoador("");
     setLocal("");
+    setEndereco("");
     setRua("");
     setNumero("");
     setBairro("");
@@ -123,7 +128,7 @@ export const Doação = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-      }else{
+      } else {
         Swal.fire({
           icon: "error",
           title: "Dados faltando",
@@ -180,9 +185,14 @@ export const Doação = () => {
                 label="Externo"
               />
               <FormControlLabel
-                value="MPL"
+                value="MLP"
                 control={<Radio color="warning" />}
-                label="MPL"
+                label="MLP"
+              />
+              <FormControlLabel
+                value="Lojista"
+                control={<Radio color="warning" />}
+                label="Lojista"
               />
             </RadioGroup>
           </Stack>
@@ -237,7 +247,7 @@ export const Doação = () => {
           </Fragment>
         )}
 
-        {local === "MPL" && (
+        {local === "MLP" && (
           <Fragment>
             <TextField
               multiline
@@ -246,6 +256,19 @@ export const Doação = () => {
               type="text"
               value={box}
               onChange={handleChangeBox}
+            />
+          </Fragment>
+        )}
+
+        {local === "Lojista" && (
+          <Fragment>
+            <TextField
+              multiline
+              color="warning"
+              label="Endereço"
+              type="text"
+              value={endereco}
+              onChange={handleChangeEndereco}
             />
           </Fragment>
         )}

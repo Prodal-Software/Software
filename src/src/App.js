@@ -1,11 +1,19 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom'
+
+// Componentes
 import Navbar from './components/Navbar';
-import Cadastro from './components/Cadastro';
-import DoarAlimento from './pages/DoarAlimento';
-import Login from './components/Login';
-import Motorista from './components/Motorista';
-import Administração from './pages/Adm';
+
+// Usuário
+import Cadastro from './components/Usuário/Cadastro';
+import Login from './components/Usuário/Login';
+import DoarAlimento from './components/Usuário/Doação';
+
+// Motorista
+import Motorista from './components/Motorista/Motorista';
+
+// Administracao
+import Administração from './components/Administração/Adm';
 
 function App() {
   return (

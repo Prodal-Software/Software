@@ -1,5 +1,5 @@
 import { Box, Typography, Stack } from "@mui/material";
-import AdmDoaçãoCard from "./Templates/AdmDoaçãoCard";
+import AdmDoaçãoCard from "../Templates/AdmDoaçãoCard";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 

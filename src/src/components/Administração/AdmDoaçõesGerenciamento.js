@@ -1,8 +1,8 @@
 import { Box, Typography, Stack } from "@mui/material";
-import AdmDoaçãoCard from "./Templates/AdmDoaçãoCard";
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import AdmDoaçãoCard from "../Templates/AdmDoaçãoCard";
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
-export const DoaçõesNãoEfetuadas = () => {
+export const DoaçõesGerenciamento = () => {
   return (
     <Box
       width={"800px"}
@@ -11,7 +11,7 @@ export const DoaçõesNãoEfetuadas = () => {
       justifyContent={"center"}
     >
       <Typography variant="h4" color={"darkorange"} mb={'20px'}>
-        Doações Não Efetuadas
+        Doações Disponíveis
       </Typography>
 
       <Box 
@@ -26,12 +26,12 @@ export const DoaçõesNãoEfetuadas = () => {
           alignItems={'center'}
         >
           <AdmDoaçãoCard
-            doador={"Loildo Costa"}
-            endereco={"Rua Gama, 8009, Betim, Minas Gerais"}
-            alimento={"Laranja"}
-            quantidade={"2 Caixas"}
-            status={"Não Efetuado"}
-            icon={<CancelOutlinedIcon color="error"/>}
+            doador={"Isabela Ribeiro"}
+            endereco={"Rua Omega, 13, Belo Horizonte, Minas Gerais"}
+            alimento={"Cebola"}
+            quantidade={"10 Caixas"}
+            status={"Aguardando"}
+            icon={<HelpOutlineOutlinedIcon color="warning"/>}
           />
         </Stack>
       </Box>
@@ -39,4 +39,4 @@ export const DoaçõesNãoEfetuadas = () => {
   );
 };
 
-export default DoaçõesNãoEfetuadas;
+export default DoaçõesGerenciamento;

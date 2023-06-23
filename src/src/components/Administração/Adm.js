@@ -1,11 +1,12 @@
 import { Box, Typography, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import DoaçõesGerenciamento from "../components/AdmDoaçõesGerenciamento";
-import DoaçõesEfetuadas from "../components/AdmDoaçõesEfetuadas";
-import DoaçõesNãoEfetuadas from "../components/AdmDoaçõesNãoEfetuadas";
-import Doação from "../components/AdmDoação";
-import CadastroInstituição from "../components/AdmCadastroInstituição";
+
+import DoaçõesGerenciamento from "./AdmDoaçõesGerenciamento";
+import DoaçõesEfetuadas from "./AdmDoaçõesEfetuadas";
+import DoaçõesNãoEfetuadas from "./AdmDoaçõesNãoEfetuadas";
+import Doação from "./AdmDoação";
+import CadastroInstituição from "./AdmCadastroInstituição";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

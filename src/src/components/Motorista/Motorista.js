@@ -1,5 +1,5 @@
 import { Box, Typography, Stack } from "@mui/material";
-import MotoristaDoaçãoCard from "./Templates/MotoristaDoaçãoCard";
+import MotoristaDoaçãoCard from "../Templates/MotoristaDoaçãoCard";
 
 export const Motorista = () => {
   return (
