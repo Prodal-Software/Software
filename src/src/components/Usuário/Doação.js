@@ -3,11 +3,13 @@ import { Box, Typography, Button, Stack, FormHelperText, MenuItem, TextField } f
 import { useState } from 'react'
 
 export const DoarAlimento = () => {
+    // Setters
     const [endereco,setEndereco] = useState('');
     const [alimento,setAlimento] = useState('');
     const [quantidade,setQuantidade] = useState('');
     const [tempoColeta,setTempoColeta] = useState('');
     
+    // Handlers
     const handleEnderecoChange = (Event) => {setEndereco(Event.target.value)}
     const handleAlimentoChange = (Event) => {setAlimento(Event.target.value)}
     const handleQuantidadeChange = (Event) => {setQuantidade(Event.target.value)}
