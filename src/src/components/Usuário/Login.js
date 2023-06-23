@@ -9,6 +9,7 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Link,
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
@@ -61,52 +62,58 @@ export const Login = () => {
         Login
       </Typography>
       <Box sx={{ width: "400px" }}>
-        <form onSubmit={handleSubmit}>
-          <Stack direction={"column"}>
-            <TextField
-              sx={{ m: 1, width: "auto" }}
-              label="Email"
-              type="email"
-              color="warning"
-              value={email}
-              onChange={handleEmailChange}
-            />
+        <Stack direction={"column"}>
+          <TextField
+            sx={{ m: 1, width: "auto" }}
+            label="Email"
+            type="email"
+            color="warning"
+            value={email}
+            onChange={handleEmailChange}
+          />
 
-            <FormControl
-              sx={{
-                m: 1,
-                width: "385px",
-                color: "warning",
-                alignSelf: "flex-start",
-              }}
-              variant="outlined"
-            >
-              <InputLabel htmlFor="outlined-adornment-password" color="warning">
-                Senha
-              </InputLabel>
-              <OutlinedInput
-                value={senha}
-                color="warning"
-                id="outlined-adornment-password"
-                type={mostrarSenha ? "text" : "password"}
-                onChange={handleSenhaChange}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {mostrarSenha ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label="Senha"
-              />
-            </FormControl>
-          </Stack>
-        </form>
+          <FormControl
+            sx={{
+              m: 1,
+              width: "385px",
+              color: "warning",
+              alignSelf: "flex-start",
+            }}
+            variant="outlined"
+          >
+            <InputLabel htmlFor="outlined-adornment-password" color="warning">
+              Senha
+            </InputLabel>
+            <OutlinedInput
+              value={senha}
+              color="warning"
+              id="outlined-adornment-password"
+              type={mostrarSenha ? "text" : "password"}
+              onChange={handleSenhaChange}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                  >
+                    {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Senha"
+            />
+          </FormControl>
+        </Stack>
       </Box>
+      <Button color="warning"
+      href="/recuperar-senha">
+        <Typography
+          sx={{ textDecoration: "underline", textUnderlineOffset: "3px" }}
+        >
+          Esqueci minha senha
+        </Typography>
+      </Button>
       <Stack
         spacing={5}
         direction={"row"}
