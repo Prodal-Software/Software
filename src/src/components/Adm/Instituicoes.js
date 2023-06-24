@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
 
 import AdmCadastroInstituição from "./CadastroInst";
 
@@ -30,7 +29,7 @@ export const AdmInstituições = () => {
           <AdmCadastroInstituição />
         </Box>
         <Box>
-          
+
         </Box>
         <Box p={"2vh 4vh"}>
           <Stack>
