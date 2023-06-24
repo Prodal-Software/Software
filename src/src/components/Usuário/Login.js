@@ -13,6 +13,7 @@ import {
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { autenticacao } from '../../service/login';
 
 export const Login = () => {
   // Setters
@@ -49,6 +50,16 @@ export const Login = () => {
       };
 
       console.log(credenciais);
+
+      autenticacao(credenciais)
+        .then( resp => {
+          console.log(resp);
+          localStorage.removeItem('token');
+          localStorage.setItem('token', resp.data.access_token)
+        })
+        .catch( err => {
+          console.log(err);
+        })
     }
   };
 

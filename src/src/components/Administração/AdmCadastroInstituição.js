@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { post_instituicao, get_listagem_instituicoes} from '../../service/instituicao';
 
 export const AdmCadastroInstituição = () => {
   const [doador, setDoador] = useState("");
@@ -44,8 +45,9 @@ export const AdmCadastroInstituição = () => {
     setDia("");
     setTurno("");
   };
-  const handleSubmit = () => {
-    if (doador && codigo && municipio && telefone && dia && turno !== "") {
+  const handleSubmit = async () => {
+    // if (doador && codigo && municipio && telefone && dia && turno !== "") {
+    if (1) {
       // Realizar o processamento de enviar os dados
       // OBS: Adicionar +55 no telefone na hora de enviar
       let data = {
@@ -57,14 +59,23 @@ export const AdmCadastroInstituição = () => {
         turno,
       };
 
-      console.log(data);
+     
 
-      Swal.fire({
-        icon: "success",
-        title: "Instituição Cadastrada!",
-        showConfirmButton: false,
-        timer: 2000,
-      });
+      // post_instituicao(data)
+      //   .then(resp => {
+      //     console.log(resp);
+      //     Swal.fire({
+      //       icon: "success",
+      //       title: "Instituição Cadastrada!",
+      //       showConfirmButton: false,
+      //       timer: 2000,
+      //     });
+  
+      //   })
+      //   .catch( err => {
+      //     console.log(err);
+      //   })
+        
     } else {
       Swal.fire({
         icon: "error",
@@ -75,6 +86,17 @@ export const AdmCadastroInstituição = () => {
       });
     }
   };
+
+
+  const listagemInstituicoes = () => {
+    get_listagem_instituicoes()
+      .then( resp => {
+        console.log(resp);
+      })
+      .catch( err => {
+        console.log(err);
+      })
+  }
 
   return (
     <Box display={"flex"} flexDirection={"column"}>
@@ -169,6 +191,9 @@ export const AdmCadastroInstituição = () => {
 
         <Button variant="contained" color="warning" onClick={handleSubmit}>
           Cadastrar Instituição
+        </Button>
+        <Button variant="contained" color="warning" onClick={listagemInstituicoes}>
+          buscar listagem
         </Button>
       </Stack>
     </Box>
