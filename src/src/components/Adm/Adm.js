@@ -2,11 +2,12 @@ import { Box, Typography, Tabs, Tab } from "@mui/material";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-import DoaçõesGerenciamento from "./AdmDoaçõesGerenciamento";
-import DoaçõesEfetuadas from "./AdmDoaçõesEfetuadas";
-import DoaçõesNãoEfetuadas from "./AdmDoaçõesNãoEfetuadas";
-import Doação from "./AdmDoação";
-import CadastroInstituição from "./AdmCadastroInstituição";
+import DoaçõesGerenciamento from "./GerenciamentoDoacao";
+import DoaçõesEfetuadas from "./DoacaoEfetuada";
+import DoaçõesNãoEfetuadas from "./DoacaoNaoEfetuada";
+import Doação from "./Doacao";
+import CadastroInstituição from "./CadastroInst";
+import AdmInstituições from "./Instituicoes";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,6 +70,7 @@ export const Administração = () => {
           <Tab label="Doações Não Efetuadas" {...a11yProps(2)} />
           <Tab label="Cadastro de Doação" {...a11yProps(3)} />
           <Tab label="Cadastro de Instituições" {...a11yProps(4)} />
+          <Tab label="Instituições" {...a11yProps(5)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -85,6 +87,9 @@ export const Administração = () => {
       </TabPanel>
       <TabPanel value={value} index={4}>
         <CadastroInstituição />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <AdmInstituições />
       </TabPanel>
     </Box>
   );

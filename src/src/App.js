@@ -15,12 +15,12 @@ import EsqueciMinhaSenha from './components/Usuário/EsqueciMinhaSenha';
 import Motorista from './components/Motorista/Motorista';
 
 // Administracao
-import Administração from './components/Administração/Adm';
+import Administração from './components/Adm/Adm';
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar/> */}
+      <Navbar/>
         <Routes>
           <Route path='/login' element={<Login/>}/>
           <Route path='/recuperar-senha' element={<EsqueciMinhaSenha/>}/>
