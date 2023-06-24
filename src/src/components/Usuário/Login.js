@@ -13,7 +13,7 @@ import {
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
-import { autenticacao } from '../../service/login';
+import { autenticacao } from "../../service/login";
 
 export const Login = () => {
   // Setters
@@ -52,14 +52,22 @@ export const Login = () => {
       console.log(credenciais);
 
       autenticacao(credenciais)
-        .then( resp => {
+        .then((resp) => {
+          // Redirecionar para administracao
           console.log(resp);
-          localStorage.removeItem('token');
-          localStorage.setItem('token', resp.data.access_token)
+          localStorage.removeItem("token");
+          localStorage.setItem("token", resp.data.access_token);
         })
-        .catch( err => {
-          console.log(err);
-        })
+        .catch((err) => {
+          // Email ou Senhas errados
+          Swal.fire({
+            icon: "error",
+            title: "Falha na autenticação",
+            text: "Por favor, verifique se as informações inseridas estão corretas.",
+            confirmButtonText: "OK",
+            confirmButtonColor: "red",
+          });
+        });
     }
   };
 
@@ -70,7 +78,7 @@ export const Login = () => {
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      justifyContent={'center'}
+      justifyContent={"center"}
     >
       <Typography sx={{ fontSize: "5vh", mb: "1vh", color: "orange" }}>
         Login
