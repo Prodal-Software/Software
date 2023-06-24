@@ -10,7 +10,6 @@ import Login from './components/Usuário/Login';
 import DoarAlimento from './components/Usuário/Doação';
 import EsqueciMinhaSenha from './components/Usuário/EsqueciMinhaSenha';
 
-
 // Motorista
 import Motorista from './components/Motorista/Motorista';
 

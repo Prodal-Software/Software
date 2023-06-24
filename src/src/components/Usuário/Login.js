@@ -9,17 +9,19 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
-  Link,
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { autenticacao } from '../../service/login';
 
 export const Login = () => {
+  // Setters
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
+  // Handlers
   const handleClickShowPassword = () => {
     setMostrarSenha((show) => !show);
   };
@@ -30,7 +32,7 @@ export const Login = () => {
     setSenha(Event.target.value);
   };
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
     if (email.length === 0 || senha.length === 0) {
       Swal.fire({
@@ -48,23 +50,35 @@ export const Login = () => {
       };
 
       console.log(credenciais);
+
+      autenticacao(credenciais)
+        .then( resp => {
+          console.log(resp);
+          localStorage.removeItem('token');
+          localStorage.setItem('token', resp.data.access_token)
+        })
+        .catch( err => {
+          console.log(err);
+        })
     }
   };
 
   return (
     <Box
-      sx={{ pt: "10%" }}
+      sx={{ width: "100%", height: "100%" }}
+      m={"20vh 0vh"}
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
+      justifyContent={'center'}
     >
-      <Typography sx={{ mb: "30px" }} variant="h2">
+      <Typography sx={{ fontSize: "5vh", mb: "1vh", color: "orange" }}>
         Login
       </Typography>
-      <Box sx={{ width: "400px" }}>
+      <Box>
         <Stack direction={"column"}>
           <TextField
-            sx={{ m: 1, width: "auto" }}
+            sx={{ m: "1vh 0vh", width: "35vh" }}
             label="Email"
             type="email"
             color="warning"
@@ -74,20 +88,19 @@ export const Login = () => {
 
           <FormControl
             sx={{
-              m: 1,
-              width: "385px",
+              m: "1vh 0vh",
               color: "warning",
-              alignSelf: "flex-start",
+              width: "35vh",
             }}
             variant="outlined"
           >
-            <InputLabel htmlFor="outlined-adornment-password" color="warning">
+            <InputLabel htmlFor="senhaInput" color="warning">
               Senha
             </InputLabel>
             <OutlinedInput
               value={senha}
               color="warning"
-              id="outlined-adornment-password"
+              id="senhaInput"
               type={mostrarSenha ? "text" : "password"}
               onChange={handleSenhaChange}
               endAdornment={
@@ -106,8 +119,7 @@ export const Login = () => {
           </FormControl>
         </Stack>
       </Box>
-      <Button color="warning"
-      href="/recuperar-senha">
+      <Button color="warning" href="/recuperar-senha">
         <Typography
           sx={{ textDecoration: "underline", textUnderlineOffset: "3px" }}
         >

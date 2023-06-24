@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { post_instituicao, get_listagem_instituicoes} from '../../service/instituicao';
 
 export const AdmCadastroInstituição = () => {
   // Setters
@@ -46,8 +47,9 @@ export const AdmCadastroInstituição = () => {
     setDia("");
     setTurno("");
   };
-  const handleSubmit = () => {
-    if (doador && codigo && municipio && telefone && dia && turno !== "") {
+  const handleSubmit = async () => {
+    // if (doador && codigo && municipio && telefone && dia && turno !== "") {
+    if (1) {
       // Realizar o processamento de enviar os dados
       let data = {
         doador,
@@ -57,7 +59,7 @@ export const AdmCadastroInstituição = () => {
         dia,
         turno,
       };
-
+      
       var formData = new FormData();
       formData.append(data);
 
@@ -111,6 +113,17 @@ export const AdmCadastroInstituição = () => {
       });
     }
   };
+
+
+  const listagemInstituicoes = () => {
+    get_listagem_instituicoes()
+      .then( resp => {
+        console.log(resp);
+      })
+      .catch( err => {
+        console.log(err);
+      })
+  }
 
   return (
     <Box display={"flex"} flexDirection={"column"}>
@@ -205,6 +218,9 @@ export const AdmCadastroInstituição = () => {
 
         <Button variant="contained" color="warning" onClick={handleSubmit}>
           Cadastrar Instituição
+        </Button>
+        <Button variant="contained" color="warning" onClick={listagemInstituicoes}>
+          buscar listagem
         </Button>
       </Stack>
     </Box>
