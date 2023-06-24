@@ -12,6 +12,7 @@ import { useState } from "react";
 import { post_instituicao, get_listagem_instituicoes} from '../../service/instituicao';
 
 export const AdmCadastroInstituição = () => {
+  // Setters
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
   const [municipio, setMunicipio] = useState("");
@@ -19,6 +20,7 @@ export const AdmCadastroInstituição = () => {
   const [dia, setDia] = useState("");
   const [turno, setTurno] = useState("");
 
+  // Handlers
   const handleChangeDoador = (Event) => {
     setDoador(Event.target.value);
   };
@@ -49,7 +51,6 @@ export const AdmCadastroInstituição = () => {
     // if (doador && codigo && municipio && telefone && dia && turno !== "") {
     if (1) {
       // Realizar o processamento de enviar os dados
-      // OBS: Adicionar +55 no telefone na hora de enviar
       let data = {
         doador,
         codigo,
@@ -58,31 +59,57 @@ export const AdmCadastroInstituição = () => {
         dia,
         turno,
       };
+      
+      var formData = new FormData();
+      formData.append(data);
 
-     
+      // Enviar dados para o backend
+      // POST the formData to backend
+      fetch("https://localhost/api/post/video", {
+        method: "POST",
+        body: formData,
+      })
+        .then(function (response) {
 
-      // post_instituicao(data)
-      //   .then(resp => {
-      //     console.log(resp);
-      //     Swal.fire({
-      //       icon: "success",
-      //       title: "Instituição Cadastrada!",
-      //       showConfirmButton: false,
-      //       timer: 2000,
-      //     });
-  
-      //   })
-      //   .catch( err => {
-      //     console.log(err);
-      //   })
-        
+          // console.log(response);
+          // Checar resposta do backend
+          if (response.status === 200) {
+            // Resposta Positiva
+            Swal.fire({
+              icon: "success",
+              title: "Instituição Cadastrada!",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          } else {
+            // Resposta Negativa
+            Swal.fire({
+              icon: "error",
+              title: "Ocorreu um erro",
+              text: "Não foi possível cadastrar a instituição, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
+              confirmButtonText: "OK",
+              confirmButtonColor: "red",
+            });
+          }
+        })
+        // Tratamento de erro
+        .catch(function (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Erro: "+error,
+            confirmButtonText: "OK",
+            confirmButtonColor: "red",
+          });
+        });
+      // console.log(data);
     } else {
       Swal.fire({
         icon: "error",
         title: "Dados faltando",
         text: "Por favor, preencha todos os campos.",
         confirmButtonText: "OK",
-        confirmButtonColor:"red"
+        confirmButtonColor: "red",
       });
     }
   };
