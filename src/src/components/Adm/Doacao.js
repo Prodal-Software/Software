@@ -10,11 +10,13 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Checkbox
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { Fragment, useState } from "react";
 
 export const Doação = () => {
+  const [anonimo, setAnonimo] = useState("");
   const [doador, setDoador] = useState("");
   const [local, setLocal] = useState("");
   const [box, setBox] = useState("");
@@ -28,6 +30,9 @@ export const Doação = () => {
   const [qtd, setQtd] = useState("");
   const [tempo, setTempo] = useState("");
 
+  const handleChangeAnonimo = (Event) => {
+    setAnonimo(Event.target.value);
+  };
   const handleChangeDoador = (Event) => {
     setDoador(Event.target.value);
   };
@@ -153,12 +158,23 @@ export const Doação = () => {
           Realizar Doação
         </Typography>
 
+        <FormControlLabel
+          label="Anônimo"
+          control={
+            <Checkbox
+              color="warning"
+              checked={anonimo}
+              onChange={handleChangeAnonimo}
+            ></Checkbox>
+          }
+        ></FormControlLabel>
         <TextField
           fullWidth
           color="warning"
           label="Nome do Doador"
           type="name"
           value={doador}
+          disabled={anonimo?true:false}
           onChange={handleChangeDoador}
         />
 

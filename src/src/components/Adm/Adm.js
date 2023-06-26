@@ -6,7 +6,6 @@ import DoaçõesGerenciamento from "./GerenciamentoDoacao";
 import DoaçõesEfetuadas from "./DoacaoEfetuada";
 import DoaçõesNãoEfetuadas from "./DoacaoNaoEfetuada";
 import Doação from "./Doacao";
-import CadastroInstituição from "./CadastroInst";
 import AdmInstituições from "./Instituicoes";
 
 function TabPanel(props) {

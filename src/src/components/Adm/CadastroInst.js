@@ -60,7 +60,7 @@ export const AdmCadastroInstituição = () => {
       };
 
       var formData = new FormData();
-      formData.append(data);
+      formData.append('informacoes',data);
 
       // POST the formData to backend
       fetch("https://localhost/api/post/video", {
