@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
-import { post_instituicao, get_listagem_instituicoes} from '../../service/instituicao';
 
 export const AdmCadastroInstituição = () => {
   // Setters
@@ -59,18 +58,16 @@ export const AdmCadastroInstituição = () => {
         dia,
         turno,
       };
-      
-      var formData = new FormData();
-      formData.append(data);
 
-      // Enviar dados para o backend
+      var formData = new FormData();
+      formData.append('informacoes',data);
+
       // POST the formData to backend
       fetch("https://localhost/api/post/video", {
         method: "POST",
         body: formData,
       })
         .then(function (response) {
-
           // console.log(response);
           // Checar resposta do backend
           if (response.status === 200) {
@@ -97,7 +94,7 @@ export const AdmCadastroInstituição = () => {
           Swal.fire({
             icon: "error",
             title: "Oops!",
-            text: "Erro: "+error,
+            text: "Erro: " + error,
             confirmButtonText: "OK",
             confirmButtonColor: "red",
           });
@@ -114,21 +111,10 @@ export const AdmCadastroInstituição = () => {
     }
   };
 
-
-  const listagemInstituicoes = () => {
-    get_listagem_instituicoes()
-      .then( resp => {
-        console.log(resp);
-      })
-      .catch( err => {
-        console.log(err);
-      })
-  }
-
   return (
     <Box display={"flex"} flexDirection={"column"}>
       <Stack spacing={1}>
-        <Typography variant="h4" color={"darkorange"}>
+        <Typography sx={{ fontSize: "3.5vh", mb: "1vh", color: "orange" }}>
           Cadastrar Instituição
         </Typography>
 
@@ -218,9 +204,6 @@ export const AdmCadastroInstituição = () => {
 
         <Button variant="contained" color="warning" onClick={handleSubmit}>
           Cadastrar Instituição
-        </Button>
-        <Button variant="contained" color="warning" onClick={listagemInstituicoes}>
-          buscar listagem
         </Button>
       </Stack>
     </Box>

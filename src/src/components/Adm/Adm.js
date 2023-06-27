@@ -6,7 +6,6 @@ import DoaçõesGerenciamento from "./GerenciamentoDoacao";
 import DoaçõesEfetuadas from "./DoacaoEfetuada";
 import DoaçõesNãoEfetuadas from "./DoacaoNaoEfetuada";
 import Doação from "./Doacao";
-import CadastroInstituição from "./CadastroInst";
 import AdmInstituições from "./Instituicoes";
 
 function TabPanel(props) {
@@ -69,8 +68,7 @@ export const Administração = () => {
           <Tab label="Doações Coletadas" {...a11yProps(1)} />
           <Tab label="Doações Não Efetuadas" {...a11yProps(2)} />
           <Tab label="Cadastro de Doação" {...a11yProps(3)} />
-          <Tab label="Cadastro de Instituições" {...a11yProps(4)} />
-          <Tab label="Instituições" {...a11yProps(5)} />
+          <Tab label="Instituições" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -86,9 +84,6 @@ export const Administração = () => {
         <Doação />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        <CadastroInstituição />
-      </TabPanel>
-      <TabPanel value={value} index={5}>
         <AdmInstituições />
       </TabPanel>
     </Box>
