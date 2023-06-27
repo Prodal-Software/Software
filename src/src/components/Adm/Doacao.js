@@ -10,7 +10,8 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
-  Checkbox
+  Checkbox,
+  Paper,
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { Fragment, useState } from "react";
@@ -31,7 +32,8 @@ export const Doação = () => {
   const [tempo, setTempo] = useState("");
 
   const handleChangeAnonimo = (Event) => {
-    setAnonimo(Event.target.value);
+    setAnonimo(Event.target.checked);
+    setDoador(Event.target.checked ? "Anônimo" : "");
   };
   const handleChangeDoador = (Event) => {
     setDoador(Event.target.value);
@@ -157,218 +159,225 @@ export const Doação = () => {
         <Typography variant="h4" color={"darkorange"}>
           Realizar Doação
         </Typography>
-
-        <FormControlLabel
-          label="Anônimo"
-          control={
-            <Checkbox
+        <Paper sx={{ p: "2vh 2vh", width:'50vh' }} elevation={5}>
+          <Stack direction={"row"} spacing={1}>
+            <TextField
+              fullWidth
               color="warning"
-              checked={anonimo}
-              onChange={handleChangeAnonimo}
-            ></Checkbox>
-          }
-        ></FormControlLabel>
-        <TextField
-          fullWidth
-          color="warning"
-          label="Nome do Doador"
-          type="name"
-          value={doador}
-          disabled={anonimo?true:false}
-          onChange={handleChangeDoador}
-        />
-
-        {/* Inserir 2 radio buttons para endereco externo e mpl 
-        Mostrar campos de acordo com a selecao*/}
-        <FormControl>
-          <Stack direction={"row"} spacing={2}>
-            <FormLabel
-              id="radio-buttons-group-label"
-              color="warning"
-              sx={{ alignSelf: "center" }}
-            >
-              Local :
-            </FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="radio-buttons-group-label"
-              value={local}
-              onChange={handleChangeLocal}
-            >
-              <FormControlLabel
-                value="Externo"
-                control={<Radio color="warning" />}
-                label="Externo"
-              />
-              <FormControlLabel
-                value="MLP"
-                control={<Radio color="warning" />}
-                label="MLP"
-              />
-              <FormControlLabel
-                value="Lojista"
-                control={<Radio color="warning" />}
-                label="Lojista"
-              />
-            </RadioGroup>
+              label="Nome do Doador"
+              type="name"
+              value={doador}
+              disabled={anonimo ? true : false}
+              onChange={handleChangeDoador}
+            />
+            <FormControlLabel
+              label="Anônimo"
+              control={
+                <Checkbox
+                  color="warning"
+                  checked={anonimo}
+                  onChange={handleChangeAnonimo}
+                ></Checkbox>
+              }
+            ></FormControlLabel>
           </Stack>
-        </FormControl>
 
-        {local === "Externo" && (
-          <Fragment>
-            <Stack direction={"row"} spacing={1}>
+          {/* Inserir 2 radio buttons para endereco externo e mpl 
+        Mostrar campos de acordo com a selecao*/}
+          <FormControl>
+            <Stack direction={"row"} spacing={2}>
+              <FormLabel
+                id="radio-buttons-group-label"
+                color="warning"
+                sx={{ alignSelf: "center" }}
+              >
+                Local :
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="radio-buttons-group-label"
+                value={local}
+                onChange={handleChangeLocal}
+              >
+                <FormControlLabel
+                  value="Externo"
+                  control={<Radio color="warning" />}
+                  label="Externo"
+                />
+                <FormControlLabel
+                  value="MLP"
+                  control={<Radio color="warning" />}
+                  label="MLP"
+                />
+                <FormControlLabel
+                  value="Lojista"
+                  control={<Radio color="warning" />}
+                  label="Lojista"
+                />
+              </RadioGroup>
+            </Stack>
+          </FormControl>
+
+          {local === "Externo" && (
+            <Fragment>
+              <Stack direction={"row"} spacing={1} mb={'1vh'}>
+                <TextField
+                  fullWidth
+                  color="warning"
+                  label="Rua"
+                  type="text"
+                  value={rua}
+                  onChange={handleChangeRua}
+                />
+                <TextField
+                  sx={{ width: "15vh" }}
+                  color="warning"
+                  label="Numero"
+                  type="number"
+                  value={numero}
+                  onChange={handleChangeNumero}
+                />
+              </Stack>
+
+              <Stack direction={"row"} spacing={1} mb={'1vh'}>
+                <TextField
+                  color="warning"
+                  label="Bairro"
+                  type="text"
+                  value={bairro}
+                  onChange={handleChangeBairro}
+                />
+                <TextField
+                  color="warning"
+                  label="Cidade"
+                  type="text"
+                  value={cidade}
+                  onChange={handleChangeCidade}
+                  fullWidth
+                />
+              </Stack>
+
               <TextField
+                multiline
+                color="warning"
+                label="Complemento"
+                type="text"
+                value={complemento}
+                onChange={handleChangeComplemento}
                 fullWidth
-                color="warning"
-                label="Rua"
-                type="text"
-                value={rua}
-                onChange={handleChangeRua}
               />
+            </Fragment>
+          )}
+
+          {local === "MLP" && (
+            <Fragment>
               <TextField
-                sx={{ width: "150px" }}
+                multiline
                 color="warning"
-                label="Numero"
-                type="number"
-                value={numero}
-                onChange={handleChangeNumero}
-              />
-            </Stack>
-
-            <Stack direction={"row"} spacing={1}>
-              <TextField
-                color="warning"
-                label="Bairro"
+                label="Box"
                 type="text"
-                value={bairro}
-                onChange={handleChangeBairro}
+                value={box}
+                onChange={handleChangeBox}
+                fullWidth
               />
+            </Fragment>
+          )}
+
+          {local === "Lojista" && (
+            <Fragment>
               <TextField
+                multiline
                 color="warning"
-                label="Cidade"
+                label="Endereço"
                 type="text"
-                value={cidade}
-                onChange={handleChangeCidade}
+                value={endereco}
+                onChange={handleChangeEndereco}
+                fullWidth
               />
-            </Stack>
+            </Fragment>
+          )}
 
+          <Box marginTop={"2%"}>
             <TextField
-              multiline
               color="warning"
-              label="Complemento"
-              type="text"
-              value={complemento}
-              onChange={handleChangeComplemento}
-            />
-          </Fragment>
-        )}
+              label="Alimento"
+              value={alimento}
+              onChange={handleChangeAlimento}
+              helperText="Selecione o alimento da doação"
+              select
+              fullWidth
+            >
+              <MenuItem value={0}>Banana</MenuItem>
+              <MenuItem value={1}>Berinjela</MenuItem>
+              <MenuItem value={2}>Alface</MenuItem>
+              <MenuItem value={3}>Couve</MenuItem>
+              <MenuItem value={4}>
+                <Typography sx={{ fontStyle: "italic", fontWeight: "bold" }}>
+                  Outro
+                </Typography>
+              </MenuItem>
+            </TextField>
+          </Box>
 
-        {local === "MLP" && (
-          <Fragment>
+          <Box marginTop={"2%"}>
             <TextField
-              multiline
               color="warning"
-              label="Box"
-              type="text"
-              value={box}
-              onChange={handleChangeBox}
-            />
-          </Fragment>
-        )}
+              label="Quantidade"
+              value={qtd}
+              onChange={handleChangeQtd}
+              helperText="Selecione o turno de atendimento reservado da instituição"
+              select
+              fullWidth
+            >
+              <MenuItem value={0}>1 Caixa</MenuItem>
+              <MenuItem value={1}>2 Caixas</MenuItem>
+              <MenuItem value={2}>3 Caixas</MenuItem>
+              <MenuItem value={3}>5 Caixas</MenuItem>
+              <MenuItem value={4}>10 Caixas</MenuItem>
+            </TextField>
+          </Box>
 
-        {local === "Lojista" && (
-          <Fragment>
+          <Box marginTop={"2%"}>
             <TextField
-              multiline
               color="warning"
-              label="Endereço"
-              type="text"
-              value={endereco}
-              onChange={handleChangeEndereco}
-            />
-          </Fragment>
-        )}
-
-        <Box marginTop={"2%"}>
-          <TextField
-            color="warning"
-            label="Alimento"
-            value={alimento}
-            onChange={handleChangeAlimento}
-            helperText="Selecione o alimento da doação"
-            select
-            fullWidth
+              label="Tempo para Coleta"
+              value={tempo}
+              onChange={handleChangeTempo}
+              helperText="Selecione o tempo para coletar a doação"
+              select
+              fullWidth
+            >
+              <MenuItem value={0}>1h</MenuItem>
+              <MenuItem value={1}>1h30m</MenuItem>
+              <MenuItem value={2}>2h</MenuItem>
+              <MenuItem value={3}>2h30m</MenuItem>
+              <MenuItem value={4}>3h</MenuItem>
+              <MenuItem value={5}>
+                <Typography sx={{ fontStyle: "italic", fontWeight: "bold" }}>
+                  Outro
+                </Typography>
+              </MenuItem>
+            </TextField>
+          </Box>
+          <Stack
+            spacing={5}
+            direction={"row"}
+            justifyContent={"center"}
+            marginTop={"10px"}
           >
-            <MenuItem value={0}>Banana</MenuItem>
-            <MenuItem value={1}>Berinjela</MenuItem>
-            <MenuItem value={2}>Alface</MenuItem>
-            <MenuItem value={3}>Couve</MenuItem>
-            <MenuItem value={4}>
-              <Typography sx={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Outro
-              </Typography>
-            </MenuItem>
-          </TextField>
-        </Box>
+            <Button
+              variant="outlined"
+              color="error"
+              onClick={handleClearTextFields}
+            >
+              Limpar Campos
+            </Button>
 
-        <Box marginTop={"2%"}>
-          <TextField
-            color="warning"
-            label="Quantidade"
-            value={qtd}
-            onChange={handleChangeQtd}
-            helperText="Selecione o turno de atendimento reservado da instituição"
-            select
-            fullWidth
-          >
-            <MenuItem value={0}>1 Caixa</MenuItem>
-            <MenuItem value={1}>2 Caixas</MenuItem>
-            <MenuItem value={2}>3 Caixas</MenuItem>
-            <MenuItem value={3}>5 Caixas</MenuItem>
-            <MenuItem value={4}>10 Caixas</MenuItem>
-          </TextField>
-        </Box>
-
-        <Box marginTop={"2%"}>
-          <TextField
-            color="warning"
-            label="Tempo para Coleta"
-            value={tempo}
-            onChange={handleChangeTempo}
-            helperText="Selecione o tempo para coletar a doação"
-            select
-            fullWidth
-          >
-            <MenuItem value={0}>1h</MenuItem>
-            <MenuItem value={1}>1h30m</MenuItem>
-            <MenuItem value={2}>2h</MenuItem>
-            <MenuItem value={3}>2h30m</MenuItem>
-            <MenuItem value={4}>3h</MenuItem>
-            <MenuItem value={5}>
-              <Typography sx={{ fontStyle: "italic", fontWeight: "bold" }}>
-                Outro
-              </Typography>
-            </MenuItem>
-          </TextField>
-        </Box>
-      </Stack>
-      <Stack
-        spacing={5}
-        direction={"row"}
-        justifyContent={"center"}
-        marginTop={"10px"}
-      >
-        <Button
-          variant="outlined"
-          color="error"
-          onClick={handleClearTextFields}
-        >
-          Limpar Campos
-        </Button>
-
-        <Button variant="contained" color="warning" onClick={handleSubmit}>
-          Cadastrar Doação
-        </Button>
+            <Button variant="contained" color="warning" onClick={handleSubmit}>
+              Cadastrar Doação
+            </Button>
+          </Stack>
+        </Paper>
       </Stack>
     </Box>
   );

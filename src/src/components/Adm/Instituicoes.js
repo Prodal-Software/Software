@@ -13,159 +13,47 @@ import {
 import AdmCadastroInstituição from "./CadastroInst";
 import { useState } from "react";
 
-const columns = [
-  {
-    id: "codigo",
-    label: "Codigo",
-    minWidth: 50,
-  },
-  {
-    id: "nome",
-    label: "Nome",
-    minWidth: 170,
-  },
-  {
-    id: "municipio",
-    label: "Municipio",
-    minWidth: 200,
-    align: "center",
-  },
-  {
-    id: "telefone",
-    label: "Telefone",
-    minWidth: 100,
-    align: "center",
-  },
-  {
-    id: "dia",
-    label: "Dia",
-    minWidth: 80,
-    align: "center",
-  },
-  {
-    id: "turno",
-    label: "Turno",
-    minWidth: 80,
-    align: "center",
-  },
-];
-
-const rows = [
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-  {
-    codigo: "1",
-    nome: "Jose Faria da Rocha Manchele",
-    municipio: "Contagem",
-    telefone: "31 999998888",
-    dia: "Segunda",
-    turno: "Manha",
-  },
-];
-
 export const AdmInstituições = () => {
+  const columns = [
+    {
+      id: "codigo",
+      label: "Codigo",
+      minWidth: 50,
+    },
+    {
+      id: "nome",
+      label: "Nome",
+      minWidth: 700,
+    },
+    {
+      id: "status",
+      label: "Status",
+      minWidth: 100,
+      align: "center",
+    },
+  ];
+
+  const rows = [
+    {
+      codigo: "1",
+      nome: "Jose Faria da Rocha Manchele",
+      municipio: "Contagem",
+      telefone: "31 999998888",
+      dia: "Segunda",
+      turno: "Manha",
+      status: "Ativo",
+    },
+    {
+      codigo: "1",
+      nome: "Jose Faria da Rocha Manchele",
+      municipio: "Contagem",
+      telefone: "31 999998888",
+      dia: "Segunda",
+      turno: "Manha",
+      status: "Desativado",
+    },
+  ];
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -190,7 +78,7 @@ export const AdmInstituições = () => {
             Instituições
           </Typography>
           <Paper sx={{ width: "100%", overflow: "hidden" }} elevation={5}>
-            <TableContainer sx={{ maxHeight: 440, maxWidth: 1000}}>
+            <TableContainer sx={{ maxHeight: 440, maxWidth: 1000 }}>
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -198,7 +86,7 @@ export const AdmInstituições = () => {
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth }}
+                        style={{ minWidth: column.minWidth, fontWeight:'bold'}}
                       >
                         {column.label}
                       </TableCell>
@@ -220,10 +108,12 @@ export const AdmInstituições = () => {
                           {columns.map((column) => {
                             const value = row[column.id];
                             return (
-                              <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
+                              <TableCell
+                                key={column.id}
+                                align={column.align}
+                                // sx={{color:column.status == 'Ativo'?'green':'grey'}}
+                              >
+                                {value}
                               </TableCell>
                             );
                           })}
