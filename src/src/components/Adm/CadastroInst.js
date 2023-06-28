@@ -120,7 +120,7 @@ export const AdmCadastroInstituição = () => {
 
         <TextField
           color="warning"
-          label="Doador"
+          label="Nome da Instituição"
           type="name"
           value={doador}
           onChange={handleChangeDoador}
@@ -128,7 +128,7 @@ export const AdmCadastroInstituição = () => {
 
         <TextField
           color="warning"
-          label="Codigo"
+          label="Código"
           type="number"
           value={codigo}
           onChange={handleChangeCodigo}
@@ -136,7 +136,7 @@ export const AdmCadastroInstituição = () => {
 
         <TextField
           color="warning"
-          label="Municipio"
+          label="Município"
           type="name"
           value={municipio}
           onChange={handleChangeMunicipio}

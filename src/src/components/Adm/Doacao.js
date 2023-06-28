@@ -154,7 +154,7 @@ export const Doação = () => {
   };
 
   return (
-    <Box display={"flex"} flexDirection={"column"}>
+    <Box display={"flex"} flexDirection={"column"} mb={'10vh'}>
       <Stack spacing={1}>
         <Typography variant="h4" color={"darkorange"}>
           Realizar Doação
