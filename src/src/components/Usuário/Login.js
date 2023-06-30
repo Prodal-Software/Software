@@ -14,12 +14,14 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { autenticacao } from "../../service/login";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   // Setters
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const navigate = useNavigate();
 
   // Handlers
   const handleClickShowPassword = () => {
@@ -57,6 +59,7 @@ export const Login = () => {
           console.log(resp);
           localStorage.removeItem("token");
           localStorage.setItem("token", resp.data.access_token);
+          navigate('/admin');
         })
         .catch((err) => {
           // Email ou Senhas errados

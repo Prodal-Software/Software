@@ -12,6 +12,7 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { post_usuario } from "../../service/usuario";
 
 export const Cadastro = () => {
   const [checkedpassword, setCheckedpassword] = useState(false);
@@ -73,23 +74,37 @@ export const Cadastro = () => {
     } else {
       // vai ser enviado um POST depois
       let credenciais = {
-        name: nome,
-        email: email,
+        nome,
+        email,
         phone: contato,
         password: senha,
       };
 
       console.log(credenciais);
-      
-      Swal.fire({
-        icon: "success",
-        title: "Conta criada com sucesso!",
-        text:"Redirecionando para realizar Login",
-        showConfirmButton: false,
-        timer: 3000,
-      });
+      post_usuario(credenciais)
+        .then( resp => {
+          Swal.fire({
+            icon: "success",
+            title: "Conta criada com sucesso!",
+            text:"Redirecionando para realizar Login",
+            showConfirmButton: false,
+            timer: 3000,
+          });
 
-      navigate('/')
+          navigate('/login');
+        })
+        .catch( err => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Não foi possível cadastrar o usuário, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
+            confirmButtonText: "OK",
+            confirmButtonColor: "red",
+          });
+        })
+      
+  
+
     }
   };
   return (

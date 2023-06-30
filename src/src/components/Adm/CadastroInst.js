@@ -11,7 +11,8 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import { post_instituicao } from "../../service/instituicao";
 
-export const AdmCadastroInstituição = () => {
+
+export const AdmCadastroInstituição = (props) => {
   // Normal States
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
@@ -82,33 +83,39 @@ export const AdmCadastroInstituição = () => {
       return;
     } else {
       try {
-        const response = post_instituicao({
-          doador: doador,
-          codigo: codigo,
-          municipio: municipio,
+        // Realizar o processamento de enviar os dados
+        let data = {
+          nome: doador,
+          codigo,
+          municipio,
           telefone: "+55 " + telefone,
-          dia: dia,
-          turno: turno,
-        });
+          dia,
+          turno,
+        };
 
-        if (response.status == "200") {
-          Swal.fire({
-            icon: "success",
-            title: "Instituição cadastrada com sucesso",
-            showConfirmButton: false,
-            timer: 2000,
+        // POST the formData to backend
+        post_instituicao(data)
+          .then(function (response) {
+            if (response.status == "200") {
+              Swal.fire({
+                icon: "success",
+                title: "Instituição cadastrada com sucesso",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+              props.acionaListagem();
+              handleClearTextFields();
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Erro ao cadastrar instituição",
+                text: "Por favor tente novamente mais tarde",
+                confirmButtonText: "OK",
+                confirmButtonColor: "red",
+              });
+              console.log(response.status + response.statusText);
+            }
           });
-          handleClearTextFields();
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "Erro ao cadastrar instituição",
-            text: "Por favor tente novamente mais tarde",
-            confirmButtonText: "OK",
-            confirmButtonColor: "red",
-          });
-          console.log(response.status + response.statusText);
-        }
       } catch (error) {
         Swal.fire({
           icon: "error",
