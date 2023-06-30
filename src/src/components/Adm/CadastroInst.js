@@ -8,7 +8,6 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { useState } from "react";
 import { post_instituicao } from "../../service/instituicao";
 
