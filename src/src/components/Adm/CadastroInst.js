@@ -91,6 +91,7 @@ export const AdmCadastroInstituição = (props) => {
           telefone: "+55 " + telefone,
           dia,
           turno,
+          // status: 1
         };
 
         // POST the formData to backend
