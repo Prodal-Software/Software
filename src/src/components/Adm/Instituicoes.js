@@ -11,7 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import AdmCadastroInstituição from "./CadastroInst";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { get_listagem_instituicoes } from "../../service/instituicao";
 
 export const AdmInstituições = () => {
   const columns = [
@@ -56,6 +57,29 @@ export const AdmInstituições = () => {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [instituicoes, setInstituicoes] = useState([]);
+
+  useEffect(() => {
+    listagemInstituicoes();
+  }, []);
+  
+  const listagemInstituicoes = async (event) => {
+    get_listagem_instituicoes()
+      .then( resp => {
+        console.log(resp.data.data);
+        setInstituicoes(resp.data.data.map( value => {
+          let obj = {
+            codigo: value.codigo,
+            nome: value.nome,
+            status: value.status == 1 ? 'Ativo' : 'Desativado' 
+          }
+          return obj;
+        }));
+      })
+      .catch( err => {
+        console.log(err);
+      })
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -70,7 +94,9 @@ export const AdmInstituições = () => {
     <Paper elevation={4}>
       <Box display={"flex"} flexDirection={"row"} width={"100%"}>
         <Box p={"2vh 4vh"}>
-          <AdmCadastroInstituição />
+          <AdmCadastroInstituição 
+            acionaListagem={listagemInstituicoes}
+          />
         </Box>
 
         <Box p={"2vh 4vh"}>
@@ -95,7 +121,8 @@ export const AdmInstituições = () => {
                 </TableHead>
                 <TableBody>
                   {/* Adicionar loading quando tiver buscando os dados */}
-                  {rows
+                  {/* {rows */}
+                  {instituicoes
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       return (
@@ -124,9 +151,9 @@ export const AdmInstituições = () => {
               </Table>
             </TableContainer>
             <TablePagination
-              rowsPerPageOptions={[10, 20, 30, 50]}
+              rowsPerPageOptions={[]}
               component="div"
-              count={rows.length}
+              count={instituicoes.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

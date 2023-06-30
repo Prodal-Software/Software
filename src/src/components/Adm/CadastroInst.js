@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { post_instituicao } from "../../service/instituicao";
 
-export const AdmCadastroInstituição = () => {
+export const AdmCadastroInstituição = (props) => {
   // Setters
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
@@ -47,11 +48,11 @@ export const AdmCadastroInstituição = () => {
     setTurno("");
   };
   const handleSubmit = async () => {
-    // if (doador && codigo && municipio && telefone && dia && turno !== "") {
-    if (1) {
+    if (doador && codigo && municipio && telefone && dia && turno !== "") {
+    // if (1) {
       // Realizar o processamento de enviar os dados
       let data = {
-        doador,
+        nome: doador,
         codigo,
         municipio,
         telefone: "+55 " + telefone,
@@ -59,42 +60,25 @@ export const AdmCadastroInstituição = () => {
         turno,
       };
 
-      var formData = new FormData();
-      formData.append('informacoes',data);
-
       // POST the formData to backend
-      fetch("https://localhost/api/post/video", {
-        method: "POST",
-        body: formData,
-      })
+      post_instituicao(data)
         .then(function (response) {
-          // console.log(response);
-          // Checar resposta do backend
-          if (response.status === 200) {
-            // Resposta Positiva
-            Swal.fire({
-              icon: "success",
-              title: "Instituição Cadastrada!",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          } else {
-            // Resposta Negativa
-            Swal.fire({
-              icon: "error",
-              title: "Ocorreu um erro",
-              text: "Não foi possível cadastrar a instituição, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
-              confirmButtonText: "OK",
-              confirmButtonColor: "red",
-            });
-          }
+          // Resposta Positiva
+          Swal.fire({
+            icon: "success",
+            title: "Instituição Cadastrada!",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          props.acionaListagem();
+          handleClearTextFields();
         })
         // Tratamento de erro
         .catch(function (error) {
           Swal.fire({
             icon: "error",
             title: "Oops!",
-            text: "Erro: " + error,
+            text: "Não foi possível cadastrar a instituição, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
             confirmButtonText: "OK",
             confirmButtonColor: "red",
           });
@@ -120,7 +104,7 @@ export const AdmCadastroInstituição = () => {
 
         <TextField
           color="warning"
-          label="Doador"
+          label="Nome"
           type="name"
           value={doador}
           onChange={handleChangeDoador}
