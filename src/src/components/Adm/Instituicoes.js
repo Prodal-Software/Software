@@ -1,39 +1,43 @@
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import TablePagination from "@mui/material/TablePagination";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 import AdmCadastroInstituição from "./CadastroInst";
 import { useEffect, useState } from "react";
 import { get_listagem_instituicoes } from "../../service/instituicao";
 
-export const AdmInstituições = () => {
-  const columns = [
-    {
-      id: "codigo",
-      label: "Codigo",
-      minWidth: 50,
-    },
-    {
-      id: "nome",
-      label: "Nome",
-      minWidth: 700,
-    },
-    {
-      id: "status",
-      label: "Status",
-      minWidth: 100,
-      align: "center",
-    },
-  ];
+const columns = [
+  {
+    id: "openInfoBtn",
+    label: "",
+    minWidth: 10,
+  },
+  {
+    id: "id",
+    label: "ID",
+    minWidth: 20,
+  },
+  {
+    id: "nome",
+    label: "Nome",
+    minWidth: 600,
+  },
+  {
+    id: "status",
+    label: "Status",
+    minWidth: 100,
+    align: "center",
+  },
+];
 
+export const AdmInstituições = () => {
+  // Setters
   const rows = [
     {
       codigo: "1",
@@ -104,15 +108,18 @@ export const AdmInstituições = () => {
             Instituições
           </Typography>
           <Paper sx={{ width: "100%", overflow: "hidden" }} elevation={5}>
-            <TableContainer sx={{ maxHeight: 440, maxWidth: 1000 }}>
-              <Table stickyHeader aria-label="sticky table">
+            <TableContainer sx={{ maxHeight: 800, maxWidth: 1000 }}>
+              <Table>
                 <TableHead>
                   <TableRow>
                     {columns.map((column) => (
                       <TableCell
                         key={column.id}
                         align={column.align}
-                        style={{ minWidth: column.minWidth, fontWeight:'bold'}}
+                        style={{
+                          minWidth: column.minWidth,
+                          fontWeight: "bold",
+                        }}
                       >
                         {column.label}
                       </TableCell>

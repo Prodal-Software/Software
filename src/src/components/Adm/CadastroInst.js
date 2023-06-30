@@ -12,7 +12,7 @@ import { useState } from "react";
 import { post_instituicao } from "../../service/instituicao";
 
 export const AdmCadastroInstituição = (props) => {
-  // Normal States
+  // Setters
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
   const [municipio, setMunicipio] = useState("");
@@ -20,38 +20,24 @@ export const AdmCadastroInstituição = (props) => {
   const [dia, setDia] = useState("");
   const [turno, setTurno] = useState("");
 
-  // Error States
-  const [doadorError, setDoadorError] = useState(false);
-  const [codigoError, setCodigoError] = useState(false);
-  const [municipioError, setMunicipioError] = useState(false);
-  const [telefoneError, setTelefoneError] = useState(false);
-  const [diaError, setDiaError] = useState(false);
-  const [turnoError, setTurnoError] = useState(false);
-
   // Handlers
   const handleChangeDoador = (Event) => {
     setDoador(Event.target.value);
-    setDoadorError(false);
   };
   const handleChangeCodigo = (Event) => {
     setCodigo(Event.target.value);
-    setCodigoError(false);
   };
   const handleChangeMunicipio = (Event) => {
     setMunicipio(Event.target.value);
-    setMunicipioError(false);
   };
   const handleChangeTelefone = (Event) => {
     setTelefone(Event.target.value);
-    setTelefoneError(false);
   };
   const handleChangeDia = (Event) => {
     setDia(Event.target.value);
-    setDiaError(false);
   };
   const handleChangeTurno = (Event) => {
     setTurno(Event.target.value);
-    setTurnoError(false);
   };
   const handleClearTextFields = () => {
     setDoador("");
@@ -62,16 +48,43 @@ export const AdmCadastroInstituição = (props) => {
     setTurno("");
   };
   const handleSubmit = async () => {
-    // Checar por campos vazios
-    if (!doador || !codigo || !municipio || !telefone || !dia || !turno) {
-      // Alterar Error State para campos vazios
-      setDoadorError(!doador);
-      setCodigoError(!codigo);
-      setMunicipioError(!municipio);
-      setTelefoneError(!telefone);
-      setDiaError(!dia);
-      setTurnoError(!turno);
+    if (doador && codigo && municipio && telefone && dia && turno !== "") {
+    // if (1) {
+      // Realizar o processamento de enviar os dados
+      let data = {
+        nome: doador,
+        codigo,
+        municipio,
+        telefone: "+55 " + telefone,
+        dia,
+        turno,
+      };
 
+      // POST the formData to backend
+      post_instituicao(data)
+        .then(function (response) {
+          // Resposta Positiva
+          Swal.fire({
+            icon: "success",
+            title: "Instituição Cadastrada!",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          props.acionaListagem();
+          handleClearTextFields();
+        })
+        // Tratamento de erro
+        .catch(function (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops!",
+            text: "Não foi possível cadastrar a instituição, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
+            confirmButtonText: "OK",
+            confirmButtonColor: "red",
+          });
+        });
+      // console.log(data);
+    } else {
       Swal.fire({
         icon: "error",
         title: "Dados faltando",
@@ -79,52 +92,6 @@ export const AdmCadastroInstituição = (props) => {
         confirmButtonText: "OK",
         confirmButtonColor: "red",
       });
-      return;
-    } else {
-      try {
-        // Realizar o processamento de enviar os dados
-        let data = {
-          nome: doador,
-          codigo,
-          municipio,
-          telefone: "+55 " + telefone,
-          dia,
-          turno,
-        };
-
-        // POST the formData to backend
-        post_instituicao(data)
-          .then(function (response) {
-            if (response.status == "200") {
-              Swal.fire({
-                icon: "success",
-                title: "Instituição cadastrada com sucesso",
-                showConfirmButton: false,
-                timer: 2000,
-              });
-              props.acionaListagem();
-              handleClearTextFields();
-            } else {
-              Swal.fire({
-                icon: "error",
-                title: "Erro ao cadastrar instituição",
-                text: "Por favor tente novamente mais tarde",
-                confirmButtonText: "OK",
-                confirmButtonColor: "red",
-              });
-              console.log(response.status + response.statusText);
-            }
-          });
-      } catch (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Erro ao cadastrar instituição",
-          text: "Por favor tente novamente mais tarde",
-          confirmButtonText: "OK",
-          confirmButtonColor: "red",
-        });
-        console.log(error);
-      }
     }
   };
 
