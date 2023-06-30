@@ -8,10 +8,12 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Swal from "sweetalert2";
+import axios from "axios";
 import { useState } from "react";
+import { post_instituicao } from "../../service/instituicao";
 
 export const AdmCadastroInstituição = () => {
-  // Setters
+  // Normal States
   const [doador, setDoador] = useState("");
   const [codigo, setCodigo] = useState("");
   const [municipio, setMunicipio] = useState("");
@@ -19,24 +21,38 @@ export const AdmCadastroInstituição = () => {
   const [dia, setDia] = useState("");
   const [turno, setTurno] = useState("");
 
+  // Error States
+  const [doadorError, setDoadorError] = useState(false);
+  const [codigoError, setCodigoError] = useState(false);
+  const [municipioError, setMunicipioError] = useState(false);
+  const [telefoneError, setTelefoneError] = useState(false);
+  const [diaError, setDiaError] = useState(false);
+  const [turnoError, setTurnoError] = useState(false);
+
   // Handlers
   const handleChangeDoador = (Event) => {
     setDoador(Event.target.value);
+    setDoadorError(false);
   };
   const handleChangeCodigo = (Event) => {
     setCodigo(Event.target.value);
+    setCodigoError(false);
   };
   const handleChangeMunicipio = (Event) => {
     setMunicipio(Event.target.value);
+    setMunicipioError(false);
   };
   const handleChangeTelefone = (Event) => {
     setTelefone(Event.target.value);
+    setTelefoneError(false);
   };
   const handleChangeDia = (Event) => {
     setDia(Event.target.value);
+    setDiaError(false);
   };
   const handleChangeTurno = (Event) => {
     setTurno(Event.target.value);
+    setTurnoError(false);
   };
   const handleClearTextFields = () => {
     setDoador("");
@@ -47,60 +63,16 @@ export const AdmCadastroInstituição = () => {
     setTurno("");
   };
   const handleSubmit = async () => {
-    // if (doador && codigo && municipio && telefone && dia && turno !== "") {
-    if (1) {
-      // Realizar o processamento de enviar os dados
-      let data = {
-        doador,
-        codigo,
-        municipio,
-        telefone: "+55 " + telefone,
-        dia,
-        turno,
-      };
+    // Checar por campos vazios
+    if (!doador || !codigo || !municipio || !telefone || !dia || !turno) {
+      // Alterar Error State para campos vazios
+      setDoadorError(!doador);
+      setCodigoError(!codigo);
+      setMunicipioError(!municipio);
+      setTelefoneError(!telefone);
+      setDiaError(!dia);
+      setTurnoError(!turno);
 
-      var formData = new FormData();
-      formData.append('informacoes',data);
-
-      // POST the formData to backend
-      fetch("https://localhost/api/post/video", {
-        method: "POST",
-        body: formData,
-      })
-        .then(function (response) {
-          // console.log(response);
-          // Checar resposta do backend
-          if (response.status === 200) {
-            // Resposta Positiva
-            Swal.fire({
-              icon: "success",
-              title: "Instituição Cadastrada!",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          } else {
-            // Resposta Negativa
-            Swal.fire({
-              icon: "error",
-              title: "Ocorreu um erro",
-              text: "Não foi possível cadastrar a instituição, por favor tente novamente mais tarde. Se o problema persistir, entre em contato com os adiministradores do sistema",
-              confirmButtonText: "OK",
-              confirmButtonColor: "red",
-            });
-          }
-        })
-        // Tratamento de erro
-        .catch(function (error) {
-          Swal.fire({
-            icon: "error",
-            title: "Oops!",
-            text: "Erro: " + error,
-            confirmButtonText: "OK",
-            confirmButtonColor: "red",
-          });
-        });
-      // console.log(data);
-    } else {
       Swal.fire({
         icon: "error",
         title: "Dados faltando",
@@ -108,6 +80,46 @@ export const AdmCadastroInstituição = () => {
         confirmButtonText: "OK",
         confirmButtonColor: "red",
       });
+      return;
+    } else {
+      try {
+        const response = post_instituicao({
+          doador: doador,
+          codigo: codigo,
+          municipio: municipio,
+          telefone: "+55 " + telefone,
+          dia: dia,
+          turno: turno,
+        });
+
+        if (response.status == "200") {
+          Swal.fire({
+            icon: "success",
+            title: "Instituição cadastrada com sucesso",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          handleClearTextFields();
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Erro ao cadastrar instituição",
+            text: "Por favor tente novamente mais tarde",
+            confirmButtonText: "OK",
+            confirmButtonColor: "red",
+          });
+          console.log(response.status + response.statusText);
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao cadastrar instituição",
+          text: "Por favor tente novamente mais tarde",
+          confirmButtonText: "OK",
+          confirmButtonColor: "red",
+        });
+        console.log(error);
+      }
     }
   };
 
@@ -119,6 +131,7 @@ export const AdmCadastroInstituição = () => {
         </Typography>
 
         <TextField
+          error={doadorError}
           color="warning"
           label="Nome da Instituição"
           type="name"
@@ -127,6 +140,7 @@ export const AdmCadastroInstituição = () => {
         />
 
         <TextField
+          error={codigoError}
           color="warning"
           label="Código"
           type="number"
@@ -135,6 +149,7 @@ export const AdmCadastroInstituição = () => {
         />
 
         <TextField
+          error={municipioError}
           color="warning"
           label="Município"
           type="name"
@@ -143,6 +158,7 @@ export const AdmCadastroInstituição = () => {
         />
 
         <TextField
+          error={telefoneError}
           color="warning"
           label="Telefone"
           type="name"
@@ -157,6 +173,7 @@ export const AdmCadastroInstituição = () => {
 
         <Box marginTop={"2%"}>
           <TextField
+            error={diaError}
             color="warning"
             label="Dia da Semana"
             value={dia}
@@ -165,15 +182,16 @@ export const AdmCadastroInstituição = () => {
             select
             fullWidth
           >
-            <MenuItem value={0}>Segunda-Feira</MenuItem>
-            <MenuItem value={1}>Terça-Feira</MenuItem>
-            <MenuItem value={2}>Quarta-Feira</MenuItem>
-            <MenuItem value={3}>Quinta-Feira</MenuItem>
-            <MenuItem value={4}>Sexta-Feira</MenuItem>
+            <MenuItem value={"Segunda"}>Segunda-Feira</MenuItem>
+            <MenuItem value={"Terca"}>Terça-Feira</MenuItem>
+            <MenuItem value={"Quarta"}>Quarta-Feira</MenuItem>
+            <MenuItem value={"Quinta"}>Quinta-Feira</MenuItem>
+            <MenuItem value={"Sexta"}>Sexta-Feira</MenuItem>
           </TextField>
         </Box>
         <Box marginTop={"2%"}>
           <TextField
+            error={turnoError}
             color="warning"
             label="Turno do dia"
             value={turno}
@@ -182,9 +200,9 @@ export const AdmCadastroInstituição = () => {
             select
             fullWidth
           >
-            <MenuItem value={0}>Manhã</MenuItem>
-            <MenuItem value={1}>Tarde</MenuItem>
-            <MenuItem value={2}>Noite</MenuItem>
+            <MenuItem value={"Manha"}>Manhã</MenuItem>
+            <MenuItem value={"Tarde"}>Tarde</MenuItem>
+            <MenuItem value={"Noite"}>Noite</MenuItem>
           </TextField>
         </Box>
       </Stack>

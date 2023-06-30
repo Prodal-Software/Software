@@ -7,17 +7,17 @@ const post_instituicao = async (data) => {
 
 // endpoint para buscar listagem paginada
 const get_listagem_instituicoes = async () => {
-    return app.get('instituicao')
+    return app.get('instituicao');
 }
 
 // endpoit para buscar instituicao pelo ID
 const get_instituicao = async (id) => {
-    return app.get(`instituicao/${id}`)
+    return app.get(`instituicao/${id}`);
 }
 
 // endpoint para editar uma instituicao
 const put_instituicao = async (id, data) => {
-    return app.put(`instituicao/${id}`, data)
+    return app.put(`instituicao/${id}`, data);
 }
 
 export { 
